@@ -1,0 +1,14 @@
+.menu-link {
+  color: rgb(159, 159, 159);
+  text-decoration: none;
+  margin: 5px;
+
+  &:hover {
+    text-decoration: none;
+    color: #fff;
+  }
+}
+
+.active {
+  color: #fff;
+}

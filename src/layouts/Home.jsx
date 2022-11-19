@@ -90,7 +90,7 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <div className='container my-4 py-2'>
+      <div className='container mt-4 mb-5 pt-2 pb-5'>
         <h2 className='display-5 text-center p-0 m-0 pb-4'>Testimonials</h2>
         <div id='carouselExampleDark' className='carousel carousel-dark slide' data-bs-ride='carousel'>
           <div className='carousel-indicators'>

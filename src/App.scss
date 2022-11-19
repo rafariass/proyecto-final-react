@@ -28,6 +28,10 @@ $url-open: '../public/assets/img/home4.jpg';
   height: 350px !important;
 }
 
+.text-justify {
+  text-align: justify
+}
+
 @media (min-width: 768px) {
   .cards {
     flex-direction: row;

@@ -39,6 +39,9 @@ export default function Menu() {
               </NavLink>
               {isAuthenticated ? (
                 <>
+                  <NavLink to='/profile' className={setActiveClass}>
+                    Profile
+                  </NavLink>
                   <Nav.Link
                     onClick={() => {
                       logout({ returnTo: window.location.origin });

@@ -1,0 +1,25 @@
+.desc {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.product-img {
+  width: 100%;
+  -webkit-aspect-ratio: 1 / 1;
+  -moz-aspect-ratio: 1 / 1;
+  -ms-aspect-ratio: 1 / 1;
+  -o-aspect-ratio: 1 / 1;
+  aspect-ratio: 1 / 1;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.card-btns {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}

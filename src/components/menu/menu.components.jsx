@@ -1,9 +1,11 @@
 import './menu.components.scss';
+import { useAuth0 } from '@auth0/auth0-react';
 import { Container, Nav, Navbar } from 'react-bootstrap';
 import { NavLink, Outlet } from 'react-router-dom';
 
 export default function Menu() {
   const setActiveClass = ({ isActive }) => (isActive ? 'menu-link active' : 'menu-link');
+  const { loginWithRedirect, logout, isAuthenticated } = useAuth0();
 
   return (
     <>
@@ -27,18 +29,31 @@ export default function Menu() {
               <NavLink end to='/' className={setActiveClass}>
                 Home
               </NavLink>
-              <NavLink to='/store' className={setActiveClass}>
-                Store
-              </NavLink>
+              {isAuthenticated && (
+                <NavLink to='/store' className={setActiveClass}>
+                  Store
+                </NavLink>
+              )}
               <NavLink to='/contact' className={setActiveClass}>
                 Contact
               </NavLink>
-              <NavLink to='/login' className={setActiveClass}>
-                Log In
-              </NavLink>
-              <NavLink to='/signup' className={setActiveClass}>
-                Sign Up
-              </NavLink>
+              {isAuthenticated ? (
+                <>
+                  <Nav.Link
+                    onClick={() => {
+                      logout({ returnTo: window.location.origin });
+                    }}>
+                    Logout
+                  </Nav.Link>
+                </>
+              ) : (
+                <Nav.Link
+                  onClick={() => {
+                    loginWithRedirect();
+                  }}>
+                  Login
+                </Nav.Link>
+              )}
             </Nav>
           </Navbar.Collapse>
         </Container>

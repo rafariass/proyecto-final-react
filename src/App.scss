@@ -32,6 +32,12 @@ $url-open: '../public/assets/img/home4.jpg';
   text-align: justify
 }
 
+.g-maps {
+  width: 100%;
+  height: 450px;
+  border: 0;
+}
+
 @media (min-width: 768px) {
   .cards {
     flex-direction: row;

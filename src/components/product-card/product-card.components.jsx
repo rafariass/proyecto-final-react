@@ -29,7 +29,6 @@ export default function ProductCard({ product }) {
 
   return (
     <Card>
-      {/* <Card.Img variant='top' src={img} /> */}
       <div className='product-img' style={{ backgroundImage: `url(${img})` }}></div>
       <Card.Header className='h4 py-2'>
         <h2 className='m-0'>{capitalize(name)}</h2>
@@ -40,7 +39,7 @@ export default function ProductCard({ product }) {
       <Card.Footer className='text-muted py-3'>
         <h2 className='text-center pt-2 pb-3'>$ {formatter.format(price)}</h2>
         <div className='card-btns'>
-          <Button variant='dark' onClick={() => navigate('/pizza/' + id)}>
+          <Button variant='dark' onClick={() => navigate('/productSumary/' + id)}>
             Ver Más
             <img
               alt=''

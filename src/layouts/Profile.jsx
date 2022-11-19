@@ -1,4 +1,5 @@
 import { useAuth0 } from '@auth0/auth0-react';
+import { NavLink } from 'react-router-dom';
 
 export default function Profile() {
   const { user, isAuthenticated, isLoading, logout } = useAuth0();
@@ -19,9 +20,12 @@ export default function Profile() {
     <div className='text-center dashboard'>
       {isAuthenticated ? (
         <>
-          <img src={user?.picture} alt={user?.name} />
-          <h2>{user?.name}</h2>
-          <p>{user?.email}</p>
+          <img src={user?.picture} alt={user?.name} className='rounded-circle' />
+          <h2 className='h1'>{user?.name}</h2>
+          <p className='lead'>{user?.email}</p>
+          <NavLink to='/newproduct'>
+            <button className='btn btn-dark lead'>New Product</button>
+          </NavLink>
         </>
       ) : (
         logout({ returnTo: window.location.origin })

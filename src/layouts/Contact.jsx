@@ -8,11 +8,12 @@ export default function Contact() {
 
   const handlesubmit = (e) => {
     e.preventDefault();
-    const newMessage = { fullName, emailAddress, subject, message };
 
     if (validateForm()) {
       return false;
     }
+
+    const newMessage = { fullName, emailAddress, subject, message };
 
     console.log('newMessage: ', newMessage);
     alert('Mensaje enviado');

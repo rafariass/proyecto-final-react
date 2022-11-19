@@ -83,6 +83,10 @@ $url-store: '../public/assets/img/store.jpg';
   background-size: cover;
 }
 
+.img-sumary {
+  max-width: 500px;
+}
+
 @media (min-width: 768px) {
   .cards {
     flex-direction: row;

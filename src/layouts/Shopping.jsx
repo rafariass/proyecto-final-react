@@ -1,17 +1,19 @@
 import { Button, Container } from 'react-bootstrap';
 import { useContext, useEffect, useState } from 'react';
 import Context from '../services/Market.context';
+import { useAuth0 } from '@auth0/auth0-react';
 
 export default function Shopping() {
+  const { isAuthenticated, logout } = useAuth0();
   const { shopping, setShopping } = useContext(Context);
   const [total, setTotal] = useState(0);
+
+  const formatter = new Intl.NumberFormat('es-CL', { minimumFractionDigits: 0 });
+  const capitalize = ([initial, ...rest]) => initial.toUpperCase() + rest.join('');
 
   useEffect(() => {
     setTotal(shopping.reduce((a, b) => a + b.cant * b.price, 0));
   }, [shopping]);
-
-  const capitalize = ([initial, ...rest]) => initial.toUpperCase() + rest.join('');
-  const formatter = new Intl.NumberFormat('es-CL', { minimumFractionDigits: 0 });
 
   const addProduct = (id) => {
     const newCarrito = shopping.map((item) => {
@@ -31,6 +33,10 @@ export default function Shopping() {
     });
     setShopping(newCarrito);
   };
+
+  if (!isAuthenticated) {
+    return logout({ returnTo: window.location.origin });
+  }
 
   return (
     <Container fluid className='dashboard'>

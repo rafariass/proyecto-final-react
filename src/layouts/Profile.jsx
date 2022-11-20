@@ -4,6 +4,10 @@ import { NavLink } from 'react-router-dom';
 export default function Profile() {
   const { user, isAuthenticated, isLoading, logout } = useAuth0();
 
+  if (!isAuthenticated) {
+    return logout({ returnTo: window.location.origin });
+  }
+
   if (isLoading) {
     return (
       <div className='text-center dashboard'>
@@ -18,18 +22,12 @@ export default function Profile() {
 
   return (
     <div className='text-center dashboard'>
-      {isAuthenticated ? (
-        <>
-          <img src={user?.picture} alt={user?.name} className='rounded-circle' />
-          <h2 className='h1'>{user?.name}</h2>
-          <p className='lead'>{user?.email}</p>
-          <NavLink to='/newproduct'>
-            <button className='btn btn-dark lead'>New Product</button>
-          </NavLink>
-        </>
-      ) : (
-        logout({ returnTo: window.location.origin })
-      )}
+      <img src={user?.picture} alt={user?.name} className='rounded-circle' />
+      <h2 className='h1'>{user?.name}</h2>
+      <p className='lead'>{user?.email}</p>
+      <NavLink to='/newproduct'>
+        <button className='btn btn-dark lead'>New Product</button>
+      </NavLink>
     </div>
   );
 }

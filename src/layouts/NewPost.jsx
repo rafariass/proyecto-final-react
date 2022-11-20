@@ -13,7 +13,7 @@ export const NewPost = () => {
   const [price, setPrice] = useState('');
 
   if (!isAuthenticated) {
-    logout({ returnTo: window.location.origin });
+    return logout({ returnTo: window.location.origin });
   }
 
   const handlesubmit = (e) => {

@@ -13,13 +13,13 @@ import ProductSummary from './layouts/ProductSummary';
 import ProductsContext from './services/Market.context';
 import { useState, useEffect } from 'react';
 import { NewPost } from './layouts/NewPost';
-import Favorite from './layouts/Favorite';
 
 export default function App() {
   const endpoint = '/products.json';
 
   const [products, setProducts] = useState([]);
   const [shopping, setShopping] = useState([]);
+  const [favorite, setFavorite] = useState([]);
 
   const getProducts = async (url) => {
     const response = await fetch(url);
@@ -31,7 +31,7 @@ export default function App() {
     getProducts(endpoint);
   }, []);
 
-  const sharedState = { products, setProducts, shopping, setShopping };
+  const sharedState = { products, setProducts, shopping, setShopping, favorite, setFavorite };
 
   return (
     <ProductsContext.Provider value={sharedState}>
@@ -45,7 +45,6 @@ export default function App() {
             <Route path='newproduct' element={<NewPost />} />
             <Route path='productSumary/:id' element={<ProductSummary />} />
             <Route path='shopping' element={<Shopping />} />
-            <Route path='favorite' element={<Favorite />} />
             <Route path='*' element={<NotHome />} />
             <Route />
           </Route>

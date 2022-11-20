@@ -3,9 +3,10 @@ import { Card, Button } from 'react-bootstrap';
 import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Context from '../../services/Market.context';
+import Heart from '../heart/heart.components';
 
 export default function ProductCard({ product }) {
-  const { shopping, setShopping } = useContext(Context);
+  const { shopping, setShopping, favorite, setFavorite } = useContext(Context);
   const navigate = useNavigate();
 
   const { desc, id, img, name, price } = product;
@@ -27,9 +28,25 @@ export default function ProductCard({ product }) {
     setShopping([...newShopping]);
   };
 
+  const myFavorite = (id) => {
+    if (favorite.includes(id)) {
+      setFavorite([...favorite.filter((f) => f !== id)]);
+    } else {
+      setFavorite([...favorite, id]);
+    }
+  };
+
   return (
     <Card>
-      <div className='product-img' style={{ backgroundImage: `url(${img})` }}></div>
+      <div className='product-img' style={{ backgroundImage: `url(${img})` }}>
+        <div
+          className='heart-pointer'
+          onClick={() => {
+            myFavorite(id);
+          }}>
+          <Heart filled={favorite.includes(id)} className='heart-pointer' />
+        </div>
+      </div>
       <Card.Header className='h4 py-2'>
         <h2 className='m-0'>{capitalize(name)}</h2>
       </Card.Header>

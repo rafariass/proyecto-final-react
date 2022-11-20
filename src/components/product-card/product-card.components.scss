@@ -15,6 +15,7 @@
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+  text-align: end;
 }
 
 .card-btns {
@@ -22,4 +23,8 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+}
+
+.heart-pointer {
+  cursor: pointer;
 }

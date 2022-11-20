@@ -42,13 +42,14 @@ export default function GalleryCards() {
     else if (order === 'A-Z') productsClone.sort((a, b) => (a.name.toUpperCase() < b.name.toUpperCase() ? -1 : 1));
     else if (order === 'Z-A') productsClone.sort((a, b) => (a.name.toUpperCase() > b.name.toUpperCase() ? -1 : 1));
     else if (order === 'Favorite') {
-      const productFavorite = favorite.map((id) => productsClone.find((p) => p?.id === id));
-      console.log('productFavorite: ', productFavorite);
+      const productFavorite = [];
+      favorite.forEach((id) => {
+        const aux = productsClone.find((p) => p?.id === id);
+        aux && productFavorite.push(aux);
+      });
       setProductFilters(productFavorite);
       return;
     }
-
-    console.log('productsClone: ', productsClone);
     setProductFilters(productsClone);
   };
 

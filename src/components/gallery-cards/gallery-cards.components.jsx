@@ -3,12 +3,14 @@ import { useContext, useEffect, useState } from 'react';
 import Context from '../../services/Market.context';
 import { Container } from 'react-bootstrap';
 import ProductCard from '../product-card/product-card.components';
+import { useDebounce } from 'usehooks-ts';
 
 export default function GalleryCards() {
   const { products, favorite } = useContext(Context);
   const [name, setName] = useState('');
   const [productFilters, setProductFilters] = useState([]);
   const [order, setOrder] = useState('Lowest Price (Frst)');
+  const debouncedValue = useDebounce(name, 1000);
 
   useEffect(() => {
     applyFilter(products);
@@ -17,19 +19,30 @@ export default function GalleryCards() {
 
   useEffect(() => {
     if (name.trim()) {
-      console.log('name.trim(): ', name.trim());
+      applyFilter(products.filter((p) => p?.name.toUpperCase().includes(name.toUpperCase().trim())));
+    } else {
+      applyFilter(products);
     }
-  }, [name]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [debouncedValue]);
+
+  const handleChange = (event) => {
+    setName(event.target.value);
+  };
 
   const applyFilter = (productsList) => {
-    const productsClone = structuredClone(productsList);
+    let productsClone = structuredClone(productsList);
+
+    if (name.trim()) {
+      productsClone = productsClone.filter((p) => p?.name.toUpperCase().includes(name.toUpperCase().trim()));
+    }
 
     if (order === 'Lowest Price (Frst)') productsClone.sort((a, b) => a.price - b.price);
     else if (order === 'Highest Price (First)') productsClone.sort((a, b) => b.price - a.price);
     else if (order === 'A-Z') productsClone.sort((a, b) => (a.name.toUpperCase() < b.name.toUpperCase() ? -1 : 1));
     else if (order === 'Z-A') productsClone.sort((a, b) => (a.name.toUpperCase() > b.name.toUpperCase() ? -1 : 1));
     else if (order === 'Favorite') {
-      const productFavorite = favorite.map((id) => productsClone.find((p) => p.id === id));
+      const productFavorite = favorite.map((id) => productsClone.find((p) => p?.id === id));
       console.log('productFavorite: ', productFavorite);
       setProductFilters(productFavorite);
       return;
@@ -50,7 +63,7 @@ export default function GalleryCards() {
               <label className='col-form-label'>By Product Name</label>
             </div>
             <div className='col-auto'>
-              <input type='text' className='form-control' value={name} onChange={(e) => setName(e.target.value)} />
+              <input type='text' className='form-control' value={name} onChange={handleChange} />
             </div>
 
             <div className='col-auto'>

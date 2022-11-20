@@ -75,6 +75,40 @@ $url-store: '../public/assets/img/store.jpg';
     height: 32px;
   }
 }
+.product-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 15px;
+}
+
+.product-item-btns {
+  align-items: center;
+  justify-content: end;
+}
+
+.product-total {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+
+@media (min-width: 576px) {
+  .product-item {
+    flex-direction: row;
+  }
+
+  .product-item-btns {
+    justify-content: start;
+  }
+
+  .product-total {
+    flex-direction: row;
+  }
+}
+
 
 .store-section {
   width: 100%;

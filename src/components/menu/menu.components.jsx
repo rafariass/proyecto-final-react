@@ -42,6 +42,9 @@ export default function Menu() {
                   <NavLink to='/profile' className={setActiveClass}>
                     Profile
                   </NavLink>
+                  <NavLink to='/shopping' className={setActiveClass}>
+                    Shopping
+                  </NavLink>
                   <Nav.Link
                     onClick={() => {
                       logout({ returnTo: window.location.origin });

@@ -7,11 +7,12 @@ import Home from './layouts/Home';
 import Store from './layouts/Store';
 import Contact from './layouts/Contact';
 import Profile from './layouts/Profile';
+import Shopping from './layouts/Shopping';
 import NotHome from './layouts/NotHome';
+import ProductSummary from './layouts/ProductSummary';
 import ProductsContext from './services/Market.context';
 import { useState, useEffect } from 'react';
 import { NewPost } from './layouts/NewPost';
-import ProductSummary from './layouts/ProductSummary';
 
 export default function App() {
   const endpoint = '/products.json';
@@ -42,6 +43,7 @@ export default function App() {
             <Route path='profile' element={<Profile />} />
             <Route path='newproduct' element={<NewPost />} />
             <Route path='productSumary/:id' element={<ProductSummary />} />
+            <Route path='shopping' element={<Shopping />} />
             <Route path='*' element={<NotHome />} />
             <Route />
           </Route>

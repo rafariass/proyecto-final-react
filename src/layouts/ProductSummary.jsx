@@ -23,6 +23,7 @@ export default function ProductSummary() {
         <p className='lead text-center'>{productSelected?.desc}</p>
         <img src={productSelected?.img} alt={productSelected?.name} className='img-sumary' />
         <h2 className='m-2'>Precio: $ {formatter.format(productSelected?.price)}</h2>
+        <p className='lead text-center'>Vendedor: {productSelected?.owner}</p>
       </div>
     </>
   );
